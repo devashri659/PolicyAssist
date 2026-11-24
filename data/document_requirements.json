@@ -1,0 +1,196 @@
+{
+  "claim_types": [
+    {
+      "id": "accident_collision",
+      "name": "Accident or Collision",
+      "short_desc": "For vehicle collisions, roadside accidents, or physical damage involving another vehicle or stationary object.",
+      "guidance": "File the claim as early as possible after the incident. Avoid moving the vehicle before taking clear photos unless required for road safety.",
+      "documents": [
+        {
+          "id": "doc_claim_form",
+          "name": "Duly Signed Claim Form",
+          "category": "standard",
+          "issuer": "Policyholder / Insurer",
+          "description": "The official insurance claim application providing details of when, where, and how the accident occurred.",
+          "tip": "Ensure the signature matches the policyholder's signature on the original policy schedule."
+        },
+        {
+          "id": "doc_policy_schedule",
+          "name": "Insurance Policy Certificate / Schedule",
+          "category": "standard",
+          "issuer": "Insurance Company",
+          "description": "Proof of active coverage showing policy number, validity dates, Insured Declared Value (IDV), and coverage terms.",
+          "tip": "Verify that the accident occurred within the active validity window."
+        },
+        {
+          "id": "doc_rc_copy",
+          "name": "Vehicle Registration Certificate (RC)",
+          "category": "standard",
+          "issuer": "Transport Authority (RTO / DMV)",
+          "description": "Verifies legal ownership, vehicle chassis number, engine number, and registration credentials.",
+          "tip": "Ensure registration is active and the vehicle type matches the insured category."
+        },
+        {
+          "id": "doc_dl_copy",
+          "name": "Driver's Licence (DL) of Person Driving",
+          "category": "standard",
+          "issuer": "Licensing Authority",
+          "description": "Proof that the individual operating the vehicle at the time of the collision held a valid driving permit.",
+          "tip": "The license must be valid for the specific vehicle category (e.g., LMV / Non-Transport)."
+        },
+        {
+          "id": "doc_damage_photos",
+          "name": "Photographs & Video of Vehicle Damage",
+          "category": "standard",
+          "issuer": "Claimant / Surveyor",
+          "description": "Clear photographic evidence showing point of impact, wide angle of accident spot, and visible damages.",
+          "tip": "Take close-ups and wide shots showing the vehicle's registration plate and odometer reading."
+        },
+        {
+          "id": "doc_repair_estimate",
+          "name": "Repair Estimate & Garage Work Order",
+          "category": "standard",
+          "issuer": "Authorized Network Garage / Repairer",
+          "description": "An itemized cost breakdown of parts replacement and labor required to restore the vehicle.",
+          "tip": "Do not authorize repairs before the insurer's surveyor inspects the vehicle."
+        },
+        {
+          "id": "doc_fir_police",
+          "name": "Police FIR / Accident Report (If Applicable)",
+          "category": "conditional",
+          "issuer": "Local Police Station",
+          "description": "Mandatory if third-party injury, death, major property damage, or dispute over accident liability occurred.",
+          "tip": "Often waived by insurers for minor collisions without third-party bodily injury."
+        },
+        {
+          "id": "doc_medical_receipts",
+          "name": "Medical Records / Hospital Bills (If Injured)",
+          "category": "conditional",
+          "issuer": "Hospital / Attending Physician",
+          "description": "Required if claiming personal accident coverage for medical expenses or driver injuries.",
+          "tip": "Keep original discharge summaries, prescriptions, and payment receipts."
+        }
+      ]
+    },
+    {
+      "id": "vehicle_theft",
+      "name": "Vehicle Theft / Total Loss",
+      "short_desc": "For vehicle stolen from parking, robbery, or unauthorized seizure resulting in total loss.",
+      "guidance": "Report theft to the police immediately (within 24 hours) and notify your insurer right away. Prompt reporting is critical for theft claims.",
+      "documents": [
+        {
+          "id": "doc_theft_claim_form",
+          "name": "Signed Theft Claim Application Form",
+          "category": "standard",
+          "issuer": "Policyholder",
+          "description": "Formal claim declaration detailing the exact time, location, circumstances of theft, and last seen condition.",
+          "tip": "State facts accurately; discrepancies between police statement and claim form cause delays."
+        },
+        {
+          "id": "doc_theft_fir",
+          "name": "Police First Information Report (FIR)",
+          "category": "standard",
+          "issuer": "Local Police Station",
+          "description": "Certified copy of the criminal FIR filed immediately following the theft under section 379/theft law.",
+          "tip": "Get a certified/stamped copy from the police station where the complaint was lodged."
+        },
+        {
+          "id": "doc_original_keys",
+          "name": "All Original Vehicle Keys (Both sets)",
+          "category": "standard",
+          "issuer": "Vehicle Owner",
+          "description": "Surrender of both original factory keys as physical proof the vehicle was not left unattended with keys.",
+          "tip": "If a duplicate key was lost earlier, submit the written declaration made at the time."
+        },
+        {
+          "id": "doc_original_rc",
+          "name": "Original Registration Certificate (RC Book)",
+          "category": "standard",
+          "issuer": "Transport Authority (RTO / DMV)",
+          "description": "Original registration card surrendered to the insurer along with Form 28, 29, and 30 for title transfer.",
+          "tip": "Ensure all outstanding road taxes and hypothecations are cleared."
+        },
+        {
+          "id": "doc_police_untraced_report",
+          "name": "Police Final Untraced Report / Non-Traceable Certificate",
+          "category": "conditional",
+          "issuer": "Court / Police Judicial Magistrate",
+          "description": "Final court-accepted certificate declaring that law enforcement could not locate or recover the stolen vehicle.",
+          "tip": "Usually issued 60 to 90 days after the FIR is filed if the vehicle remains untraceable."
+        },
+        {
+          "id": "doc_rto_theft_intimation",
+          "name": "RTO Theft Intimation & Non-Use Letter",
+          "category": "conditional",
+          "issuer": "Transport Authority (RTO)",
+          "description": "Official letter intimating the RTO that the vehicle is stolen and blacklisting the registration against misuse.",
+          "tip": "Obtain an acknowledgment stamp from the RTO office."
+        },
+        {
+          "id": "doc_bank_noc",
+          "name": "NOC & Form 35 from Financier (If Financed)",
+          "category": "conditional",
+          "issuer": "Financing Bank / Loan Provider",
+          "description": "No Objection Certificate and loan clearance or foreclosure statement if the car was bought on loan.",
+          "tip": "Claim payout is routed through the financier until loan is satisfied."
+        }
+      ]
+    },
+    {
+      "id": "vehicle_damage",
+      "name": "Vehicle Damage (Non-Collision / Weather / Fire)",
+      "short_desc": "For damages caused by natural calamities (floods, storms, hail), fire, self-ignition, vandalism, or falling objects.",
+      "guidance": "Do not attempt to crank or start a flood-submerged engine, as hydrostatic lock may void engine protector coverage.",
+      "documents": [
+        {
+          "id": "doc_dmg_claim_form",
+          "name": "Completed Claim Form with Incident Details",
+          "category": "standard",
+          "issuer": "Policyholder",
+          "description": "Specifies cause of damage (e.g. tree branch fell during gale storm, flood water inundation, garage fire).",
+          "tip": "Provide clear timeline and environmental context of the damage event."
+        },
+        {
+          "id": "doc_dmg_photos",
+          "name": "High-Resolution Incident & Damage Photos",
+          "category": "standard",
+          "issuer": "Policyholder / Surveyor",
+          "description": "Photos showing the vehicle in its damaged state at the spot, water level marks, or charred areas.",
+          "tip": "Capture context photos showing surrounding environment (fallen tree, flooded street, fire aftermath)."
+        },
+        {
+          "id": "doc_dmg_rc_policy",
+          "name": "Copy of Vehicle RC & Active Policy Schedule",
+          "category": "standard",
+          "issuer": "Insurer & RTO",
+          "description": "Verifies valid comprehensive (Own Damage) insurance coverage and legal vehicle ownership.",
+          "tip": "Third-Party-only (TPO) policies do not cover natural disaster or own damage."
+        },
+        {
+          "id": "doc_fire_brigade_report",
+          "name": "Fire Brigade Report (For Fire Incidents)",
+          "category": "conditional",
+          "issuer": "Local Fire Department",
+          "description": "Official incident summary report from the fire emergency services confirming fire call and cause.",
+          "tip": "Required whenever external fire department intervention occurred."
+        },
+        {
+          "id": "doc_weather_newspaper_clipping",
+          "name": "Meteorological Report / Media Report (Flood/Storm)",
+          "category": "conditional",
+          "issuer": "News Media / IMD / Local Administration",
+          "description": "Newspaper clippings or government alerts verifying widespread flooding, cyclone, or severe weather.",
+          "tip": "Helps expedite claims during catastrophic weather events declared by authorities."
+        },
+        {
+          "id": "doc_towing_receipt",
+          "name": "Towing Service Receipt & Bill",
+          "category": "conditional",
+          "issuer": "Roadside Assistance / Tow Provider",
+          "description": "Receipt for transporting the immobilized vehicle from incident location to the authorized workshop.",
+          "tip": "Check if your policy includes Roadside Assistance or towing expense reimbursement limit."
+        }
+      ]
+    }
+  ]
+}

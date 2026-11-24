@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% set active_page = "documents" %}
+
+{% block title %}Check Document Readiness — PolicyAssist{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-intro">
+    <div class="page-breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/documents">Documents</a>
+      <span>/</span>
+      <span>Check Documents</span>
+    </div>
+    <h1 class="page-heading">Check Document Readiness</h1>
+    <p class="page-subheading">
+      Compare the documents you have gathered against the checklist to identify what's ready and what still needs attention before filing your claim.
+    </p>
+  </div>
+
+  <!-- Claim Type Selector Bar -->
+  <div class="panel-card" style="margin-bottom: 24px; padding: 18px 24px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <label for="checkClaimTypeSelect" style="font-size: 14px; font-weight: 700; color: var(--text-main);">
+          Claim Scenario:
+        </label>
+        <select id="checkClaimTypeSelect" class="form-select" style="min-width: 280px;">
+          <option value="accident_collision">Accident or Collision</option>
+          <option value="vehicle_theft">Vehicle Theft / Total Loss</option>
+          <option value="vehicle_damage">Vehicle Damage (Non-Collision / Calamities)</option>
+        </select>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="btn-secondary" id="markAllAvailableBtn">Mark All Available</button>
+        <button type="button" class="btn-secondary" id="resetCheckBtn">Reset Status</button>
+        <a href="/documents" class="btn-secondary">Back to Checklist</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-time Readiness Summary Card (As specified in requirement 5) -->
+  <div class="readiness-banner" id="readinessBanner">
+    <div class="readiness-text">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+        <span id="readinessStatusBadge" class="doc-badge badge-standard">Reviewing</span>
+        <span style="font-size: 13px; color: var(--text-muted);" id="claimScenarioName">Accident or Collision</span>
+      </div>
+      <h3 id="readinessHeadline">
+        Your checklist is partially complete. You have marked 0 of 8 documents as available.
+      </h3>
+      <p id="readinessSubtext">
+        Review each item below to mark whether you have it ready or still need to obtain it.
+      </p>
+    </div>
+
+    <div class="readiness-stats">
+      <div class="stat-item">
+        <div class="stat-number green" id="statAvailable">0</div>
+        <div class="stat-label">Available</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number red" id="statMissing">8</div>
+        <div class="stat-label">Missing</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="statPercent">0%</div>
+        <div class="stat-label">Complete</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Missing Items Attention Callout (Requirement 6) -->
+  <div id="missingAttentionCard" class="attention-card" style="display: none;">
+    <div class="attention-header">
+      <svg viewBox="0 0 24 24" width="18" height="18" stroke="#9A3412" stroke-width="2.2" fill="none">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <span>Items Still Needing Attention (<span id="missingAttentionCount">0</span>)</span>
+    </div>
+    <ul class="attention-list" id="missingAttentionList">
+      <!-- Injected dynamically -->
+    </ul>
+  </div>
+
+  <!-- Document Readiness List with Available / Missing Toggles -->
+  <div style="margin-top: 24px;">
+    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 14px; color: var(--text-main);">
+      Document Verification Matrix
+    </h3>
+
+    <div class="compare-list" id="compareList">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+
+  <!-- Mandatory Explicit Legal Disclaimer (Requirement 5) -->
+  <div class="legal-disclaimer">
+    <strong>Disclaimer:</strong> PolicyAssist provides document readiness tracking and comparison only. This application does not verify whether any document is authentic, legally valid, unaltered, or accepted by an insurance company. Please consult directly with your insurance claims department or designated surveyor for official validation.
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/check_documents.js') }}"></script>
+{% endblock %}

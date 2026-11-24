@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% set active_page = "help" %}
+
+{% block title %}Help & User Guide — PolicyAssist{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-intro">
+    <div class="page-breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span>Help</span>
+    </div>
+    <h1 class="page-heading">How to Use PolicyAssist</h1>
+    <p class="page-subheading">
+      A step-by-step guide to understanding your policy, finding required claim documents, and checking your submission readiness.
+    </p>
+  </div>
+
+  <!-- Step-by-Step Feature Walkthrough -->
+  <div class="help-grid">
+    <div class="help-card">
+      <div class="help-step-num">1</div>
+      <h3>Understand Your Policy</h3>
+      <p>
+        Upload any standard PDF insurance policy (or click one of our instant sample policies). PolicyAssist extracts the text using PyMuPDF and allows you to ask targeted questions about coverage, exclusions, deductibles, and conditions. All answers are strictly grounded in your policy text.
+      </p>
+    </div>
+
+    <div class="help-card">
+      <div class="help-step-num">2</div>
+      <h3>Generate Claim Checklists</h3>
+      <p>
+        Select your vehicle claim scenario (collision, theft, or damage) and provide an optional description. PolicyAssist queries an insurance knowledge base to generate an itemized checklist of standard and conditional documents with insurer tips.
+      </p>
+    </div>
+
+    <div class="help-card">
+      <div class="help-step-num">3</div>
+      <h3>Check Document Readiness</h3>
+      <p>
+        Mark which documents you currently have available and which are still missing. PolicyAssist calculates your completion percentage, provides an instant readiness evaluation, and highlights items needing attention before submission.
+      </p>
+    </div>
+  </div>
+
+  <!-- Frequently Asked Questions -->
+  <div class="faq-section">
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3 class="faq-question">What file formats does PolicyAssist support for policies?</h3>
+      <p class="faq-answer">
+        PolicyAssist currently supports text-based PDF files up to 16MB. Scanned PDFs without an embedded OCR text layer cannot be parsed and will prompt an honest error message.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">Does PolicyAssist approve or deny insurance claims?</h3>
+      <p class="faq-answer">
+        No. PolicyAssist is an informational and organizational assistant. It does not evaluate claim approval odds, guarantee claim outcomes, or authenticate documents. Official claims decisions rest solely with your insurance provider.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">How does PolicyAssist ensure AI answers are factual?</h3>
+      <p class="faq-answer">
+        Our backend applies strict prompt-engineering constraints and low-temperature grounding instructions to the Google Gemini model. If an answer is not found in the uploaded document, the system explicitly informs you rather than hallucinating details.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">Are my uploaded insurance documents stored permanently?</h3>
+      <p class="faq-answer">
+        No. Uploaded documents are processed in memory and temporary session storage for the duration of your session. They are never sold, shared, or used for model training.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

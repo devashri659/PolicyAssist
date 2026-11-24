@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% set active_page = "documents" %}
+
+{% block title %}Claim Documents Checklist — PolicyAssist{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-intro">
+    <div class="page-breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span>Documents</span>
+      <span>/</span>
+      <span>Claim Checklist</span>
+    </div>
+    <h1 class="page-heading">Claim Documents Checklist</h1>
+    <p class="page-subheading">
+      Find out which documents are generally needed for car insurance claims based on your claim type.
+    </p>
+  </div>
+
+  <div class="documents-layout">
+    <!-- Left Column: Form to Select Claim Type -->
+    <div class="claim-form-card">
+      <div class="panel-title">
+        <span>Claim Details</span>
+      </div>
+
+      <form id="claimForm">
+        <div class="form-group">
+          <label for="claimTypeSelect" class="form-label">Select Claim Type</label>
+          <select id="claimTypeSelect" class="form-select">
+            <option value="accident_collision">Accident or Collision</option>
+            <option value="vehicle_theft">Vehicle Theft / Total Loss</option>
+            <option value="vehicle_damage">Vehicle Damage (Weather, Fire, Non-Collision)</option>
+          </select>
+          <p class="form-hint">Choose the scenario matching your situation.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="incidentDesc" class="form-label">Brief Incident Description (Optional)</label>
+          <textarea id="incidentDesc" class="form-textarea" rows="4" placeholder="e.g. Scraped bumper against garage wall, or car stolen from apartment parking overnight..."></textarea>
+          <p class="form-hint">Adding a description allows AI to provide tailored practical tips.</p>
+        </div>
+
+        <button type="submit" class="btn-primary" id="generateChecklistBtn" style="width: 100%; justify-content: center;">
+          <span>Generate Checklist</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Quick Action: Jump to Check Documents Feature -->
+      <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border-light);">
+        <p style="font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Ready to review your documents?</p>
+        <a href="/check-documents" id="goToCheckDocumentsLink" class="btn-secondary" style="width: 100%; justify-content: center;">
+          <span>Open Missing Document Checker</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Checklist Display -->
+    <div class="checklist-container">
+      <!-- Loading State -->
+      <div id="checklistLoading" style="display: none; padding: 40px; text-align: center; background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+        <div class="spinner spinner-green"></div>
+        <p style="margin-top: 12px; font-size: 14px; color: var(--text-secondary);">Retrieving required document checklist...</p>
+      </div>
+
+      <!-- Live Progress & Counter Card -->
+      <div class="progress-card" id="progressCard">
+        <div class="progress-header">
+          <span id="claimTitleHeader" style="font-size: 16px; font-weight: 700; color: var(--text-main);">
+            Accident or Collision Checklist
+          </span>
+          <span id="progressStats" style="color: var(--primary-green); font-weight: 700;">
+            0 of 8 collected (0%)
+          </span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: var(--text-muted);">
+          <span id="remainingCountText">8 items remaining</span>
+          <span>Click checkboxes to track documents</span>
+        </div>
+      </div>
+
+      <!-- Claim Type Guidance Note -->
+      <div class="guidance-box" id="guidanceBox">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <div class="guidance-text">
+          <h4 id="guidanceTitle">Important Claim Guidance</h4>
+          <p id="guidanceMessage">File the claim as early as possible after the incident. Avoid moving the vehicle before taking clear photos unless required for road safety.</p>
+        </div>
+      </div>
+
+      <!-- Optional AI Summary Callout (if available) -->
+      <div id="aiSummaryBox" style="display: none;" class="ai-summary-card">
+        <h4>
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--primary-green)" stroke-width="2" fill="none">
+            <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm1 6h-2v6h2v-6z"/>
+          </svg>
+          AI Incident Explanation & Practical Tips
+        </h4>
+        <p id="aiSummaryText"></p>
+      </div>
+
+      <!-- Document Items List -->
+      <div id="documentsList" style="display: flex; flex-direction: column; gap: 12px;">
+        <!-- Dynamic checklist items injected here by JavaScript -->
+      </div>
+
+      <!-- General Disclaimer Note -->
+      <div class="legal-disclaimer">
+        <strong>Important Note:</strong> This checklist reflects standard insurance industry documentation requirements. Specific required items may vary depending on your insurer, policy wording, and claim circumstances. Always confirm final requirements with your insurance provider.
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/documents.js') }}"></script>
+{% endblock %}
